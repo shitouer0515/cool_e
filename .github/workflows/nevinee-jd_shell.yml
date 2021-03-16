@@ -1,6 +1,6 @@
 # File: .github/workflows/repo-sync.yml
-#name: sync-nevinee-jd_shell
-name: sync-accors-jd_shell
+name: sync-nevinee-jd_shell
+#name: sync-accors-jd_shell
 on:
   schedule:
     - cron: '5 15 * * *'
@@ -8,7 +8,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: sync-accors-jd_shell
+    types: sync-nevinee-jd_shell
 jobs:
   repo-sync:
     env:
@@ -20,11 +20,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync accors-jd_shell
+      - name: sync nevinee-jd_shell
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/accors/jd_shell.git"
+          source_repo: "https://github.com/nevinee/jd_shell.git"
           source_branch: "master"
           destination_branch: "master"
           github_token: ${{ github.event.client_payload.PAT || secrets.PAT }}
